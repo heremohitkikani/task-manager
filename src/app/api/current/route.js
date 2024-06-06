@@ -4,6 +4,12 @@ import { User } from "@/models/user";
 import { connectDb } from "@/helper/db";
 
 export async function GET(request) {
+  // const authToken = request.cookies.get("authToken")?.value;
+  if(!authToken ) {
+    return NextResponse.json({
+      message:'user is not login !!'
+    });
+  }
   const authToken = request.cookies.get("authToken")?.value;
 
   console.log(authToken);
